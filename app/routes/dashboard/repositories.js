@@ -10,16 +10,14 @@ export default TravisRoute.extend({
 
   redirect() {
     if (!this.get('features.dashboard')) {
-      return this.transitionTo('main');
+      return this.transitionTo('index');
     }
   },
 
   model() {
     return Ember.RSVP.hash({
       repos: this.store.query('repo', {
-        active: true,
-        withLastBuild: true,
-        sort_by: 'last_build.finished_at:desc'
+        active: true
       }),
       accounts: this.store.query('account', {
         all: true
